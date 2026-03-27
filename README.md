@@ -38,18 +38,7 @@ open('lambda_function.py', 'w').write(
 "
 ```
 
-## How it works
-
-```
-Browser request
-  → Lambda extracts client IP + User-Agent from event
-  → Prepends personalised greeting to scroll text
-  → Returns complete HTML page (text/html)
-    → WebGL2 fragment shader renders animated metaballs on GPU
-    → Offscreen Canvas2D draws sine-wave scrolling text
-    → Text canvas uploaded as WebGL texture, composited over background
-    → Web Audio API generates procedural music on first click
-```
+## What it does
 
 - **Greeting**: visitor sees their own IP and browser within seconds of the scroll starting.
 - **Background**: 5 metaballs in a GLSL fragment shader. Hue rotates over time, randomised on click.
@@ -57,7 +46,7 @@ Browser request
 - **Music**: procedurally generated every loop — random scale (pentatonic/major), random root, random melody walk, BPM drift. No two loops sound the same.
 - **Click**: randomizes color palette + starts audio (browser autoplay policy requires a user gesture).
 
-## Run tests
+## Run local tests
 
 ```
 uvx pytest test_lambda.py -v
@@ -66,7 +55,7 @@ uvx pytest test_lambda.py -v
 ## Key concepts for AWS Cloud Practitioner
 
 - **Lambda**: serverless compute, pay-per-invocation, auto-scaling
-- **Function URL**: direct HTTPS endpoint for a Lambda function, no API Gateway needed
+- **Function URL**: direct HTTPS endpoint for a Lambda function, no API Gateway needed (like in this demo!)
 - **Event-driven**: Lambda runs in response to events (HTTP request, S3 upload, DynamoDB change, etc.)
 - **Event object**: `event["requestContext"]["http"]["sourceIp"]` gives the caller's IP
 - **No servers to manage**: AWS handles provisioning, scaling, patching
