@@ -124,10 +124,14 @@ HTML = (
     "  #hint { position: fixed; bottom: 40px; width: 100%; text-align: center;"
     "    color: #ff0; font: 1.2em monospace; opacity: .7; pointer-events: none;"
     "    transition: opacity 1s; }"
+    "  #gh { position: fixed; bottom: 14px; right: 12px; color: #ff0;"
+    "    font: 13px monospace; opacity: .5; text-decoration: none; }"
+    "  #gh:hover { opacity: 1; }"
     "</style>"
     "</head><body>"
     '<canvas id="c"></canvas>'
     '<div id="hint">click for sound</div>'
+    '<a id="gh" href="https://github.com/gretel/lambda-demo" target="_blank">github.com/gretel/lambda-demo</a>'
     "<script>"
     + r"""
 // =====================================================================
@@ -241,7 +245,7 @@ function drawTextOverlay() {
     textCtx.globalAlpha = 0.4;
     textCtx.fillStyle = '#ff0';
     textCtx.font = '16px monospace';
-    textCtx.fillText('AWS LAMBDA // PYTHON // CLOUD', 10, HEIGHT - 20);
+    textCtx.fillText('AWS LAMBDA // PYTHON // SERVERLESS COMPUTING', 10, HEIGHT - 20);
     textCtx.globalAlpha = 1;
 
     // Advance scroll position, loop when done
