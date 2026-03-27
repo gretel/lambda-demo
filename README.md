@@ -11,17 +11,7 @@ WebGL2 metaballs, sine-wave text scroller, procedurally-generated music — all 
 | `lambda_function.py` | 6 | base64-obfuscated — deploy this |
 | `test_lambda.py` | ~90 | 15 tests |
 
-## Deploy
-
-```bash
-zip demo.zip lambda_function.py
-```
-
-1. create a Lambda function (Python 3.14 runtime)
-2. upload `demo.zip`
-3. set handler to `lambda_function.lambda_handler`
-4. add a Function URL (or API Gateway trigger)
-5. open the URL — your IP and browser appear in the scroller within seconds
+## Obfuscate Code (Optional)
 
 To regenerate `lambda_function.py` after editing `lambda_function_readable.py`:
 ```bash
@@ -46,12 +36,6 @@ open('lambda_function.py', 'w').write(
 - **Music**: procedurally generated every loop — random scale (pentatonic/major), random root, random melody walk, BPM drift. No two loops sound the same.
 - **Click**: randomizes color palette + starts audio (browser autoplay policy requires a user gesture).
 
-## Run local tests
-
-```
-uvx pytest test_lambda.py -v
-```
-
 ## Key concepts for AWS Cloud Practitioner
 
 - **Lambda**: serverless compute, pay-per-invocation, auto-scaling
@@ -60,3 +44,16 @@ uvx pytest test_lambda.py -v
 - **Event object**: `event["requestContext"]["http"]["sourceIp"]` gives the caller's IP
 - **No servers to manage**: AWS handles provisioning, scaling, patching
 - **Free tier**: 1M requests + 400,000 GB-seconds per month
+
+## Run local tests
+
+```
+uvx pytest test_lambda.py -v
+```
+
+## Deploy (Conceptual)
+
+1. create a Lambda function (Python 3.14 runtime)
+2. download [zip file](https://github.com/gretel/lambda-demo/archive/refs/heads/main.zip) containing the code
+4. add a Function URL (or API Gateway trigger) using the downloaded coded
+5. open the deployment URL
